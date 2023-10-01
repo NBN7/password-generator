@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import { Progress, Divider, Button } from "@nextui-org/react";
 
@@ -12,7 +12,7 @@ import { getRandom } from "../utils/getRandom";
 import { useDataContext } from "../context/dataContext";
 
 import { Toaster } from "react-hot-toast";
-import { toastSuccess } from "../utils/toastNotifications";
+import { toastSuccess, toastError } from "../utils/toastNotifications";
 
 export const PasswordGenerator = () => {
   type passwordConfigurationState = {
@@ -28,6 +28,7 @@ export const PasswordGenerator = () => {
       numbers: true,
       uppercase_letters: true,
     });
+  const [isError, setIsError] = useState(false);
 
   const generatedPassword = useRef<string>("");
 
@@ -76,9 +77,18 @@ export const PasswordGenerator = () => {
       generatedPassword.current +=
         PASSWORD_CONFIGURATION_CLONE[randomKey][randomIndex];
     }
+
     setPassword(generatedPassword.current);
     toastSuccess("Password generated");
   };
+
+  useEffect(() => {
+    if (passwordLength === 0) {
+      setIsError(true);
+      return;
+    }
+    setIsError(false);
+  }, [passwordLength]);
 
   return (
     <div className="flex flex-col gap-8 px-[10px]">
@@ -123,6 +133,7 @@ export const PasswordGenerator = () => {
       <Divider className="my-4" />
 
       <Button
+        isDisabled={isError}
         onClick={handleGeneratePassword}
         variant="shadow"
         color="primary"
