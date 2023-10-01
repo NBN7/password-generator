@@ -11,6 +11,9 @@ import { getRandom } from "../utils/getRandom";
 
 import { useDataContext } from "../context/dataContext";
 
+import { Toaster } from "react-hot-toast";
+import { toastSuccess } from "../utils/toastNotifications";
+
 export const PasswordGenerator = () => {
   type passwordConfigurationState = {
     [key: string]: boolean;
@@ -74,6 +77,7 @@ export const PasswordGenerator = () => {
         PASSWORD_CONFIGURATION_CLONE[randomKey][randomIndex];
     }
     setPassword(generatedPassword.current);
+    toastSuccess("Password generated");
   };
 
   return (
@@ -126,6 +130,8 @@ export const PasswordGenerator = () => {
       >
         Generate Password
       </Button>
+
+      <Toaster />
     </div>
   );
 };
