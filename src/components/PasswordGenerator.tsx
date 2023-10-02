@@ -12,7 +12,7 @@ import { getRandom } from "../utils/getRandom";
 import { useDataContext } from "../context/dataContext";
 
 import { Toaster } from "react-hot-toast";
-import { toastSuccess, toastError } from "../utils/toastNotifications";
+import { toastSuccess } from "../utils/toastNotifications";
 
 export const PasswordGenerator = () => {
   type passwordConfigurationState = {
@@ -100,14 +100,14 @@ export const PasswordGenerator = () => {
           aria-label="Loading..."
         />
         <div className="flex items-center gap-4">
-          <BiPlus
-            onClick={handleIncrement}
+          <BiMinus
+            onClick={handleDecrement}
             size="20px"
             style={{ cursor: "pointer" }}
           />
           <h3>{passwordLength}</h3>
-          <BiMinus
-            onClick={handleDecrement}
+          <BiPlus
+            onClick={handleIncrement}
             size="20px"
             style={{ cursor: "pointer" }}
           />
