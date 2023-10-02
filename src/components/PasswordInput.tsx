@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 import { Input } from "@nextui-org/react";
 
@@ -13,11 +13,11 @@ export const PasswordInput = () => {
   const { password } = useDataContext();
   const [isVisible, setIsVisible] = useState(false);
 
-  const toggleIsVisible = () => {
+  const toggleIsVisible = useCallback(() => {
     setIsVisible((prev) => !prev);
-  };
+  }, []);
 
-  const handleCopy = async () => {
+  const handleCopy = useCallback(async () => {
     if (!password) return;
     try {
       await navigator.clipboard.writeText(password);
@@ -25,7 +25,7 @@ export const PasswordInput = () => {
     } catch (error) {
       toastError("Failed to copy to clipboard");
     }
-  };
+  }, [password]);
 
   return (
     <>

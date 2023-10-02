@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 
 import { Progress, Divider, Button } from "@nextui-org/react";
 
@@ -32,23 +32,23 @@ export const PasswordGenerator = () => {
 
   const generatedPassword = useRef<string>("");
 
-  const handleIncrement = () => {
+  const handleIncrement = useCallback(() => {
     if (passwordLength >= 40) return;
     setPasswordLength((prev) => prev + 1);
-  };
+  }, [passwordLength]);
 
-  const handleDecrement = () => {
+  const handleDecrement = useCallback(() => {
     if (passwordLength === 0) return;
     setPasswordLength((prev) => prev - 1);
-  };
+  }, [passwordLength]);
 
-  const toggleSymbols = () => {
+  const toggleSymbols = useCallback(() => {
     setPasswordConfiguration((prev) => ({ ...prev, symbols: !prev.symbols }));
-  };
+  }, []);
 
-  const toggleNumbers = () => {
+  const toggleNumbers = useCallback(() => {
     setPasswordConfiguration((prev) => ({ ...prev, numbers: !prev.numbers }));
-  };
+  }, []);
 
   const toggleUppercaseLetters = () => {
     setPasswordConfiguration((prev) => ({
