@@ -2,13 +2,13 @@ import { NextUIProvider } from "@nextui-org/react";
 
 import { DataContextProvider } from "./context/dataContext";
 
-import { UserCard } from "./components/UserCard";
+import { PasswordCard } from "./components/PasswordCard";
 
 function App() {
   return (
     <NextUIProvider className="dark">
       <DataContextProvider>
-        <UserCard />
+        <PasswordCard />
       </DataContextProvider>
     </NextUIProvider>
   );

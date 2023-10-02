@@ -19,7 +19,7 @@ export const PasswordGenerator = () => {
     [key: string]: boolean;
   };
 
-  const { setPassword } = useDataContext();
+  const { setPassword, setPasswordHistory } = useDataContext();
 
   const [passwordLength, setPasswordLength] = useState(15);
   const [passwordConfiguration, setPasswordConfiguration] =
@@ -78,6 +78,8 @@ export const PasswordGenerator = () => {
         PASSWORD_CONFIGURATION_CLONE[randomKey][randomIndex];
     }
 
+    setPasswordHistory((prev) => [...prev, generatedPassword.current]);
+
     setPassword(generatedPassword.current);
     toastSuccess("Password generated");
   };
@@ -91,7 +93,7 @@ export const PasswordGenerator = () => {
   }, [passwordLength]);
 
   return (
-    <div className="flex flex-col gap-8 px-[10px]">
+    <section className="flex flex-col gap-8 px-[10px]">
       <div className="flex justify-between items-center gap-6">
         <Progress
           size="sm"
@@ -143,6 +145,6 @@ export const PasswordGenerator = () => {
       </Button>
 
       <Toaster />
-    </div>
+    </section>
   );
 };

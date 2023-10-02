@@ -2,8 +2,9 @@ import { Divider } from "@nextui-org/react";
 
 import { PasswordGenerator } from "./PasswordGenerator";
 import { PasswordInput } from "./PasswordInput";
+import { PasswordHistory } from "./PasswordHistory";
 
-export const UserCard = () => {
+export const PasswordCard = () => {
   return (
     <main className="select-none w-full sm:h-screen flex justify-center p-4">
       <section className="w-full sm:w-[400px] flex flex-col sm:justify-center gap-2 p-4">
@@ -16,6 +17,8 @@ export const UserCard = () => {
         <Divider className="my-4" />
 
         <PasswordGenerator />
+
+        <PasswordHistory />
       </section>
     </main>
   );
