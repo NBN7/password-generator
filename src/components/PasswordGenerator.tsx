@@ -34,7 +34,7 @@ export const PasswordGenerator = () => {
   const generatedPassword = useRef<string>("");
 
   const handleIncrement = useCallback(() => {
-    if (passwordLength >= 40) return;
+    if (passwordLength >= 25) return;
     setPasswordLength((prev) => prev + 1);
   }, [passwordLength]);
 
@@ -98,7 +98,7 @@ export const PasswordGenerator = () => {
       <div className="flex justify-between items-center gap-6">
         <Progress
           size="sm"
-          maxValue={40}
+          maxValue={25}
           value={passwordLength}
           aria-label="Loading..."
         />
