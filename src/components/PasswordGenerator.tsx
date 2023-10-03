@@ -4,15 +4,16 @@ import { Progress, Divider, Button } from "@nextui-org/react";
 
 import { SwitchOption } from "./SwitchOption";
 
-import { BiPlus, BiMinus } from "react-icons/bi";
-
 import { PASSWORD_CONFIGURATION } from "../constants/passwordConfiguration";
+
+import { Toaster } from "react-hot-toast";
+
+import { toastSuccess } from "../utils/toastNotifications";
 import { getRandom } from "../utils/getRandom";
 
 import { useDataContext } from "../context/dataContext";
 
-import { Toaster } from "react-hot-toast";
-import { toastSuccess } from "../utils/toastNotifications";
+import { BiPlus, BiMinus } from "react-icons/bi";
 
 export const PasswordGenerator = () => {
   type passwordConfigurationState = {
@@ -50,12 +51,12 @@ export const PasswordGenerator = () => {
     setPasswordConfiguration((prev) => ({ ...prev, numbers: !prev.numbers }));
   }, []);
 
-  const toggleUppercaseLetters = () => {
+  const toggleUppercaseLetters = useCallback(() => {
     setPasswordConfiguration((prev) => ({
       ...prev,
       uppercase_letters: !prev.uppercase_letters,
     }));
-  };
+  }, []);
 
   const handleGeneratePassword = () => {
     generatedPassword.current = "";

@@ -2,12 +2,13 @@ import { useState, useCallback } from "react";
 
 import { Input } from "@nextui-org/react";
 
-import { AiFillEye, AiFillEyeInvisible, AiFillCopy } from "react-icons/ai";
+import { Toaster } from "react-hot-toast";
+
+import { copyToClipboard } from "../utils/copyToClipboard";
 
 import { useDataContext } from "../context/dataContext";
 
-import { Toaster } from "react-hot-toast";
-import { toastSuccess, toastError } from "../utils/toastNotifications";
+import { AiFillEye, AiFillEyeInvisible, AiFillCopy } from "react-icons/ai";
 
 export const PasswordInput = () => {
   const { password } = useDataContext();
@@ -17,14 +18,9 @@ export const PasswordInput = () => {
     setIsVisible((prev) => !prev);
   }, []);
 
-  const handleCopy = useCallback(async () => {
+  const handleCopy = useCallback(() => {
     if (!password) return;
-    try {
-      await navigator.clipboard.writeText(password);
-      toastSuccess("Copied to clipboard");
-    } catch (error) {
-      toastError("Failed to copy to clipboard");
-    }
+    copyToClipboard(password);
   }, [password]);
 
   return (
@@ -43,13 +39,14 @@ export const PasswordInput = () => {
           <div className="flex gap-4">
             <button>
               {isVisible ? (
-                <AiFillEyeInvisible size="22px" onClick={toggleIsVisible} />
+                <AiFillEyeInvisible size="23px" onClick={toggleIsVisible} />
               ) : (
-                <AiFillEye size="22px" onClick={toggleIsVisible} />
+                <AiFillEye size="23px" onClick={toggleIsVisible} />
               )}
             </button>
+
             <button>
-              <AiFillCopy onClick={handleCopy} size="18px" />
+              <AiFillCopy onClick={handleCopy} size="20px" />
             </button>
           </div>
         }
