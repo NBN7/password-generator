@@ -61,7 +61,7 @@ export const PasswordHistory = () => {
             {passwordHistory.length > 0 ? (
               passwordHistory.map((password, index) => (
                 <div className="flex justify-between" key={index}>
-                  <p>{password}</p>
+                  <p className="overflow-hidden">{password}</p>
 
                   <div className="flex gap-4">
                     <button onClick={() => handleDelete(index)}>
