@@ -10,6 +10,8 @@ import { useDataContext } from "../context/dataContext";
 
 import { AiFillEye, AiFillEyeInvisible, AiFillCopy } from "react-icons/ai";
 
+import { iconStyle } from "../styles/iconStyle";
+
 export const PasswordInput = () => {
   const { password } = useDataContext();
   const [isVisible, setIsVisible] = useState(false);
@@ -40,13 +42,13 @@ export const PasswordInput = () => {
             <button>
               {isVisible ? (
                 <AiFillEyeInvisible
-                  className="active:text-[#0070F0] transition-all"
+                  className={iconStyle}
                   size="23px"
                   onClick={toggleIsVisible}
                 />
               ) : (
                 <AiFillEye
-                  className="active:text-[#0070F0] transition-all"
+                  className={iconStyle}
                   size="23px"
                   onClick={toggleIsVisible}
                 />
@@ -55,7 +57,7 @@ export const PasswordInput = () => {
 
             <button>
               <AiFillCopy
-                className="active:text-[#0070F0] transition-all"
+                className={iconStyle}
                 onClick={handleCopy}
                 size="20px"
               />

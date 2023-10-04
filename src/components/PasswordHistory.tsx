@@ -16,6 +16,8 @@ import { useDataContext } from "../context/dataContext";
 
 import { AiFillCopy, AiFillDelete } from "react-icons/ai";
 
+import { iconStyle } from "../styles/iconStyle";
+
 export const PasswordHistory = () => {
   const { passwordHistory, setPasswordHistory } = useDataContext();
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
@@ -63,17 +65,11 @@ export const PasswordHistory = () => {
 
                   <div className="flex gap-4">
                     <button onClick={() => handleDelete(index)}>
-                      <AiFillDelete
-                        className="active:text-[#0070F0] transition-all"
-                        size="20px"
-                      />
+                      <AiFillDelete className={iconStyle} size="20px" />
                     </button>
 
                     <button onClick={() => handleCopy(index)}>
-                      <AiFillCopy
-                        className="active:text-[#0070F0] transition-all"
-                        size="20px"
-                      />
+                      <AiFillCopy className={iconStyle} size="20px" />
                     </button>
                   </div>
                 </div>
