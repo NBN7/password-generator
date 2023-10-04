@@ -63,11 +63,17 @@ export const PasswordHistory = () => {
 
                   <div className="flex gap-4">
                     <button onClick={() => handleDelete(index)}>
-                      <AiFillDelete size="20px" />
+                      <AiFillDelete
+                        className="active:text-[#0070F0] transition-all"
+                        size="20px"
+                      />
                     </button>
 
                     <button onClick={() => handleCopy(index)}>
-                      <AiFillCopy size="20px" />
+                      <AiFillCopy
+                        className="active:text-[#0070F0] transition-all"
+                        size="20px"
+                      />
                     </button>
                   </div>
                 </div>

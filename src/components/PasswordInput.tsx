@@ -39,14 +39,26 @@ export const PasswordInput = () => {
           <div className="flex gap-4">
             <button>
               {isVisible ? (
-                <AiFillEyeInvisible size="23px" onClick={toggleIsVisible} />
+                <AiFillEyeInvisible
+                  className="active:text-[#0070F0] transition-all"
+                  size="23px"
+                  onClick={toggleIsVisible}
+                />
               ) : (
-                <AiFillEye size="23px" onClick={toggleIsVisible} />
+                <AiFillEye
+                  className="active:text-[#0070F0] transition-all"
+                  size="23px"
+                  onClick={toggleIsVisible}
+                />
               )}
             </button>
 
             <button>
-              <AiFillCopy onClick={handleCopy} size="20px" />
+              <AiFillCopy
+                className="active:text-[#0070F0] transition-all"
+                onClick={handleCopy}
+                size="20px"
+              />
             </button>
           </div>
         }
