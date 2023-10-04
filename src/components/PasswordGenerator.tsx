@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useCallback } from "react";
 
 import { Progress, Divider, Button } from "@nextui-org/react";
 
@@ -29,7 +29,6 @@ export const PasswordGenerator = () => {
       numbers: true,
       uppercase_letters: true,
     });
-  const [isError, setIsError] = useState(false);
 
   const generatedPassword = useRef<string>("");
 
@@ -39,7 +38,7 @@ export const PasswordGenerator = () => {
   }, [passwordLength]);
 
   const handleDecrement = useCallback(() => {
-    if (passwordLength === 0) return;
+    if (passwordLength === 6) return;
     setPasswordLength((prev) => prev - 1);
   }, [passwordLength]);
 
@@ -85,19 +84,12 @@ export const PasswordGenerator = () => {
     toastSuccess("Password generated");
   };
 
-  useEffect(() => {
-    if (passwordLength === 0) {
-      setIsError(true);
-      return;
-    }
-    setIsError(false);
-  }, [passwordLength]);
-
   return (
     <section className="flex flex-col gap-8 px-[10px]">
       <div className="flex justify-between items-center gap-6">
         <Progress
           size="sm"
+          minValue={6}
           maxValue={25}
           value={passwordLength}
           aria-label="Loading..."
@@ -136,7 +128,6 @@ export const PasswordGenerator = () => {
       <Divider className="my-4" />
 
       <Button
-        isDisabled={isError}
         onClick={handleGeneratePassword}
         variant="shadow"
         color="primary"
