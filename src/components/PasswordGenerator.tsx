@@ -89,8 +89,9 @@ export const PasswordGenerator = () => {
     // Stop password animation
     setTimeout(() => {
       clearInterval(passwordInterval);
-      setPasswordHistory((prev) => [...prev, generatedPassword.current]);
       toastSuccess("Password generated");
+      if (generatedPassword.current === "") return;
+      setPasswordHistory((prev) => [...prev, generatedPassword.current]);
     }, 500);
   };
 
