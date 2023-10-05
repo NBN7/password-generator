@@ -68,20 +68,30 @@ export const PasswordGenerator = () => {
     });
 
     const passwordConfigurationKeys = Object.keys(PASSWORD_CONFIGURATION_CLONE);
-    for (let i = 0; i < passwordLength; i++) {
-      const randomKey =
-        passwordConfigurationKeys[getRandom(passwordConfigurationKeys.length)];
-      const randomKeyLength = PASSWORD_CONFIGURATION_CLONE[randomKey].length;
-      const randomIndex = getRandom(randomKeyLength);
+    // Password generation animation
+    const passwordInterval = setInterval(() => {
+      generatedPassword.current = "";
+      for (let i = 0; i < passwordLength; i++) {
+        const randomKey =
+          passwordConfigurationKeys[
+            getRandom(passwordConfigurationKeys.length)
+          ];
+        const randomKeyLength = PASSWORD_CONFIGURATION_CLONE[randomKey].length;
+        const randomIndex = getRandom(randomKeyLength);
 
-      generatedPassword.current +=
-        PASSWORD_CONFIGURATION_CLONE[randomKey][randomIndex];
-    }
+        generatedPassword.current +=
+          PASSWORD_CONFIGURATION_CLONE[randomKey][randomIndex];
+      }
 
-    setPasswordHistory((prev) => [...prev, generatedPassword.current]);
+      setPassword(generatedPassword.current);
+    }, 30);
 
-    setPassword(generatedPassword.current);
-    toastSuccess("Password generated");
+    // Stop password animation
+    setTimeout(() => {
+      clearInterval(passwordInterval);
+      setPasswordHistory((prev) => [...prev, generatedPassword.current]);
+      toastSuccess("Password generated");
+    }, 500);
   };
 
   return (
