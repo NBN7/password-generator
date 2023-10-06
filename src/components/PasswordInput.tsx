@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useId } from "react";
 
 import { Input } from "@nextui-org/react";
 
@@ -13,6 +13,8 @@ import { AiFillEye, AiFillEyeInvisible, AiFillCopy } from "react-icons/ai";
 import { iconStyle } from "../styles/iconStyle";
 
 export const PasswordInput = () => {
+  const id = useId();
+
   const { password } = useDataContext();
   const [isVisible, setIsVisible] = useState(false);
 
@@ -28,6 +30,7 @@ export const PasswordInput = () => {
   return (
     <>
       <Input
+        id={id}
         size="lg"
         variant="bordered"
         color="primary"

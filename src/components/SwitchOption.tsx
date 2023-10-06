@@ -14,7 +14,11 @@ export const SwitchOption = ({
   return (
     <div className="flex justify-between items-center">
       <h3 className="text-[#A1A1AA]">{text}</h3>
-      <Switch defaultSelected={isActive} onClick={toggleIsActive}></Switch>
+      <Switch
+        name="switch"
+        defaultSelected={isActive}
+        onClick={toggleIsActive}
+      ></Switch>
     </div>
   );
 };
